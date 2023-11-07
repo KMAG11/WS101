@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WS101</title>
+</head>
+
+<style>
+main {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+select, input {
+    width: 50%;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#quantity, #coke, #pepsi {
+    display: none;
+}
+</style>
+
+<script>
+ function selectProd(){
+    let product = document.getElementById('product').value;
+
+    if(product == "coke") {
+        document.getElementById('coke').style.display="block";
+        document.getElementById('quantity').style.display="block";
+        document.getElementById('pepsi').style.display="none";
+    }
+    else if(product == "pepsi") {
+        document.getElementById('pepsi').style.display="block";
+        document.getElementById('quantity').style.display="block";
+        document.getElementById('coke').style.display="none";
+    }
+    else {
+        alert("Invalid");
+    }
+ }
+ function computeOrderCoke(){
+    let productCoke = document.getElementById('coke').value;
+    let quantity = parseInt(document.getElementById('quantity').value);
+
+    if(productCoke == "coke_regular"){
+        let total = quantity * 15;
+        document.getElementById('total').innerHTML = total;
+    }
+    else if (productCoke == "coke_zero"){
+        let total = quantity * 25; 
+        document.getElementById('total').innerHTML = total;
+    }
+    else if (productCoke == "coke_light"){
+        let total = quantity * 20; 
+        document.getElementById('total').innerHTML = total;
+    }
+    else {
+        alert("Invalid input");
+    }
+ }
+ function computeOrderPepsi(){
+    let productPepsi = document.getElementById('pepsi').value;
+    let quantity = parseInt(document.getElementById('quantity').value);
+
+    if(productPepsi == "pepsi_regular"){
+        let total = quantity * 15;
+        document.getElementById('total').innerHTML = total;
+    }
+    else if (productPepsi == "pepsi_black"){
+        let total = quantity * 25; 
+        document.getElementById('total').innerHTML = total;
+    }
+    else if (productPepsi == "pepsi_blue"){
+        let total = quantity * 20; 
+        document.getElementById('total').innerHTML = total;
+    }
+    else {
+        alert("Invalid input");
+    }
+ }
+</script>
+
+<body>
+    <main>
+        <h1> Simple Order Calculator </h1>
+        <h2> Total Amount: <span id="total"></span> Php</h2>
+        <select id="product">
+            <option onclick="selectProd()" value="null"></option>
+            <option onclick="selectProd()" value="coke"> Coke </option>
+            <option onclick="selectProd()" value="pepsi"> Pepsi </option>
+        </select>
+        <input type="number" id="quantity">
+        <select id="coke" class="prod_type">
+            <option onclick="computeOrderCoke()" value="coke_regular">Coke Regular</option>
+            <option onclick="computeOrderCoke()" value="coke_zero">Coke Zero</option>
+            <option onclick="computeOrderCoke()" value="coke_light">Coke Light</option>
+        </select>
+        <select id="pepsi" class="prod_type">
+            <option onclick="computeOrderPepsi()" value="pepsi_regular">Pepsi Regular</option>
+            <option onclick="computeOrderPepsi()" value="pepsi_black">Pepsi Black</option>
+            <option onclick="computeOrderPepsi()" value="pepsi_blue">Pepsi Blue</option>
+        </select>
+    </main>
+</body>
+</html>
